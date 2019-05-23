@@ -1,0 +1,98 @@
+
+#custom-search .search-query {
+  padding: 15px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  color: transparent;
+  font-size: 1.2em;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+  margin-bottom: 0;
+}
+
+/* Hide Text when unfocused plus fallbacks */
+#custom-search .search-query::placeholder {
+  color: transparent;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+#custom-search .search-query::-webkit-input-placeholder {
+  color: transparent;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+#custom-search .search-query::-moz-placeholder {
+  color: transparent;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+#custom-search .search-query:-moz-placeholder {
+  color: transparent;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+#custom-search .search-query:-ms-input-placeholder {
+  color: transparent;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+/* Style when Search is selected */
+#custom-search .search-query:focus {
+  border-radius: 50px;
+  border: 2px solid white;
+  background-color: #a8a7a7;
+  width: 350px;
+  color: white;
+}
+
+/* Style for placeholder value plus fallbacks */
+#custom-search .search-query:focus::placeholder {
+  color: #cccccc;
+}
+
+#custom-search .search-query:focus::-webkit-input-placeholder {
+  color: #cccccc;
+}
+
+#custom-search .search-query:focus::-moz-placeholder {
+  color: transparent;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+#custom-search .search-query:focus::-moz-placeholder {
+  color: transparent;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+#custom-search .search-query:focus:-ms-input-placeholder {
+  color: #cccccc;
+}
+
+/* Style for Button */
+#custom-search button {
+	border: 0;
+	background: #cccccc;
+	padding: 0;
+	width: 70px;
+	margin-top: -5px;
+	position: relative;
+	top: 2px;
+	left: -48px;
+	margin-bottom: 0;
+	border-radius: 3px;
+}
+
+/* Font Awesome Icon Style */
+#custom-search button i {
+	margin-left:-13px;
+	color:white;
+}
