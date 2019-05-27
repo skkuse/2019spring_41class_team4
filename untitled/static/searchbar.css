@@ -1,98 +1,73 @@
 
-#custom-search .search-query {
-  padding: 15px;
-  width: 50px;
-  height: 50px;
-  border: 2px solid transparent;
-  background-color: transparent;
-  color: transparent;
-  font-size: 1.2em;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
-  margin-bottom: 0;
+
+.search-bar {
+  height: 44px;
+  width: 200px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 20px;
+  position: relative;
+  background: #fff;
 }
 
-/* Hide Text when unfocused plus fallbacks */
-#custom-search .search-query::placeholder {
-  color: transparent;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
+.input {
+  border: none;
+  height: 25px;
+  width: 150px;
+  color: #1b1b1b;
+  font-size: 15px;
+  outline: none;
 }
 
-#custom-search .search-query::-webkit-input-placeholder {
-  color: transparent;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
+.input:not(:placeholder-shown) + .label {
+  font-size: 9px;
+  top: 3px;
+  color: #00c853;
 }
 
-#custom-search .search-query::-moz-placeholder {
-  color: transparent;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
+.input:focus ~ .label {
+  font-size: 9px;
+  top: 3px;
+  color: #4279a3;
+  transition: all 0.5s ease;
 }
 
-#custom-search .search-query:-moz-placeholder {
-  color: transparent;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
+.label {
+  color: #aaaaaa;
+  position: absolute;
+  top: 13px;
+  pointer-events: none;
+  transition: all 0.5s ease;
 }
 
-#custom-search .search-query:-ms-input-placeholder {
-  color: transparent;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
+.search-btn {
+  background: #4279a3;
+  border-radius: 20px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  justify-content: center;
+  cursor: pointer;
+  right: 2px;
+  position: absolute;
+  transition: all 1s ease;
 }
 
-/* Style when Search is selected */
-#custom-search .search-query:focus {
-  border-radius: 50px;
-  border: 2px solid white;
-  background-color: #a8a7a7;
-  width: 350px;
-  color: white;
+.icon {
+  display: inline-flex;
 }
 
-/* Style for placeholder value plus fallbacks */
-#custom-search .search-query:focus::placeholder {
-  color: #cccccc;
+.icon-18 {
+  width: 18px;
+  height: 18px;
 }
 
-#custom-search .search-query:focus::-webkit-input-placeholder {
-  color: #cccccc;
-}
 
-#custom-search .search-query:focus::-moz-placeholder {
-  color: transparent;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
-}
 
-#custom-search .search-query:focus::-moz-placeholder {
-  color: transparent;
-  -webkit-transition: all 0.8s;
-  transition: all 0.8s;
-}
-
-#custom-search .search-query:focus:-ms-input-placeholder {
-  color: #cccccc;
-}
-
-/* Style for Button */
-#custom-search button {
-	border: 0;
-	background: #cccccc;
-	padding: 0;
-	width: 70px;
-	margin-top: -5px;
-	position: relative;
-	top: 2px;
-	left: -48px;
-	margin-bottom: 0;
-	border-radius: 3px;
-}
-
-/* Font Awesome Icon Style */
-#custom-search button i {
-	margin-left:-13px;
-	color:white;
+.input:focus ~ .highlight {
+  width: 150px;
+  transition: all 1s ease;
 }

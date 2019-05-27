@@ -1,0 +1,147 @@
+body {
+      background-color: #2c3338;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .main {
+      width: 500px;
+      height: 650px;
+      margin: 4em auto;
+      background-color: #363b41;
+      border-radius: 20px;
+      padding-top: 20px;
+      padding-bottom: 10%;
+      margin-top: 3%;
+      box-shadow: 0px 11px 14px 1px rgba(0, 0, 0, 0.08);
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .su {
+      color: #ea4c88;
+      margin-bottom: 10%;
+      font-weight: 600;
+      font-size: 25px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .first {
+      width: 80%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .mail {
+      width: 80%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .pass1 {
+      width: 80%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .pass2 {
+      width: 80%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .submit {
+      border-radius: 5em;
+      color: #fff;
+      background: #ea4c88;
+      border: 0;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      margin-top: 4%;
+      font-size: 13px;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .first:focus,
+    .mail:focus,
+    .pass1:focus,
+    .pass2:focus,
+    .cal:focus,
+    .country:focus {
+      border: 2px solid hsla(207, 90%, 54%, 0.72);
+      outline: 0;
+    }
+
+    .submit:hover {
+      box-shadow: 0 0 13px 1px rgba(167, 43, 188, 0.35);
+      cursor: pointer;
+    }
+
+    .submit:active {
+      box-shadow: none;
+    }
+
+    textarea:focus,
+    input:focus {
+      color: #2196F3;
+    }
+
+    a {
+      color: #2196F3;
+      font-style: normal;
+      text-decoration: none;
+    }
+
+    .mb {
+      color: #263238;
+    }
+
+    span.mb-2:hover {
+      color: #263238;
+    }

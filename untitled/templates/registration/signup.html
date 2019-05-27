@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<html>
+
+<head>
+  <link href="{% static 'signup.css' %}" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Sign up</title>
+</head>
+
+<body>
+  <div class="main" align="center">
+    <p class="su">Sign up</p>
+    <form method="POST" action="{% url 'signup' %}" class="form1" align="center">
+        {% csrf_token %}
+      <input class="first" name="username" type="text" placeholder="Full Name" required autofocus>
+      <input class="mail" name="mail" type="email" placeholder="Email Address" required>
+      <input class="pass1" name="password1" type="password" placeholder="Choose Password" required>
+      <input class="pass2"name="password2" type="password" placeholder="Retype Password" required>
+
+
+      <input class="submit" type="submit" value="Sign Up" align="center"> </form>
+  </div>
+  <div class="bottom">
+
+  </div>
+</body>
+
+</html>

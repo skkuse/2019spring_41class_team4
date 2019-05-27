@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>음식 등록</title>
+</head>
+<body>
+<div class="page-header">
+    <h1>음식 등록</h1>
+</div>
+<div class="container food">
+    <form method="POST" class="post-form">
+        {% csrf_token %} {{form.as_p}}
+        <button type="submit" class="save btn-default">save</button>
+    </form>
+</div>
+
+</body>
+</html>
