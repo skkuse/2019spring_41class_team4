@@ -52,6 +52,7 @@ def community(request):
 def purchase(request):
     return render(request, 'purchase.html')
 
+
 def foodreg (request):
     if request.method == "POST":
         # SAVE DATA
@@ -64,6 +65,5 @@ def foodreg (request):
     else:
         form = FoodForm()
         return render(request, 'foodform.html', {"form": form})
-
 
 
