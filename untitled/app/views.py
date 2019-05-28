@@ -69,7 +69,8 @@ def view(request, board_id):
     board = Board.objects.get(pk=board_id)
     board.view += 1
     board.save()
-    return render(request, "read_post.html")
+    context = {'board': board}
+    return render(request, "read_post.html", context)
 
 
 
