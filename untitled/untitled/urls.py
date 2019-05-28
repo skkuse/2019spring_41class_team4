@@ -26,6 +26,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('community/', views.community, name='community'),
+    path('community/<int:board_id>', views.view),
     path('purchase/', views.purchase, name='purchase'),
     path('foodreg/', views.foodreg, name='foodreg'),
     path('', views.login, name='login'),

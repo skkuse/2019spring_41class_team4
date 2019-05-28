@@ -44,14 +44,13 @@ def logout(request):
 
 
 def community(request):
-    boards = Board.objects.order_by('-created_date')
+    boards = Board.objects.order_by('-id')
     context = {'boards': boards}
     return render(request, 'community.html', context)
 
 
 def purchase(request):
     return render(request, 'purchase.html')
-
 
 def foodreg (request):
     if request.method == "POST":
@@ -65,5 +64,12 @@ def foodreg (request):
     else:
         form = FoodForm()
         return render(request, 'foodform.html', {"form": form})
+
+def view(request, board_id):
+    board = Board.objects.get(pk=board_id)
+    board.view += 1
+    board.save()
+    return render(request, "read_post.html")
+
 
 
