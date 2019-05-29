@@ -31,5 +31,6 @@ urlpatterns = [
     path('community/submit', views.submit_post, name='community_submit'),
     path('purchase/', views.purchase, name='purchase'),
     path('foodreg/', views.foodreg, name='foodreg'),
+    path('foodreg/submit', views.submit_food, name='food_submit'),
     path('', views.login, name='login'),
 ]
