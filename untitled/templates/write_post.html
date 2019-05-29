@@ -15,7 +15,8 @@
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
+  <link href="{% static 'css/blog-post.css' %}" rel="stylesheet">
+    <link href="{% static 'post_form.css' %}" rel="stylesheet">
 
 </head>
 
@@ -55,8 +56,8 @@
   <!-- Page Content -->
   <div class="container">
 
- <div class="row">
-<div class="col-lg-3">
+    <div class="row">
+        <div class="col-lg-3">
 
         <h1 class="my-4">Community</h1>
 
@@ -65,76 +66,50 @@
         </div>
 
       </div>
-      <!-- Blog Entries Column -->
-      <div class="col-lg-9">
 
-        <h1 class="my-4">
-        </h1>
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+          <form  method="POST" action="{% url 'community_submit' %}">{% csrf_token %}
+          <h1 class="mt-4">
+              <hr>
+      <div class="post-title">
+        <input type="text" name="title" id="post-title" class="post-input large"  placeholder="Title"/>
+      </div>
+          </h1>
+          <hr>
 
-        <!-- Blog Post -->
+        <!-- Post Content -->
+        <p class="lead">
+          <a>
+              <div class="post-content">
+          <input type="text" name="name" class="post-input" placeholder="Name"/>
+      </div>
+          </a>
+        </p>
+          <hr>
+          <p class="lead"></p>
 
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="card-title"></h2>
-            <p class="card-text"><div id="data" class="table-responsive">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Num.</th>
-            <th>Subject</th>
-            <th>Name</th>
-            <th>View</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for board in boards %}
-        <tr>
+        <p><div class="post-content">
+        <textarea name="content" class="post-input content" placeholder="Content"></textarea>
+      </div></p>
 
-            <td data-label="Num." width=10%>{{ board.id }}</td>
-            <td data-label="Subject" width=65%><form action="{{ board.id }}" method="POST" title="{{ board.subject}}"><a href="{{ board.id }}" value="{{ board.id }}">{{ board.subject }}</a></form></td>
-            <td data-label="Name" width=15%>{{ board.name }}</td>
-            <td data-label="View" width=10%>{{ board.view }}</td>
+        <hr>
 
-        </tr>
-        {% endfor %}
+          <button type="button" class="btn btn-primary">Cancel</button>
+          <button type="submit"  class="btn btn-primary">Submit</button>
+          </form>
+        <!-- Comments Form -->
+        <div class="card my-4">
 
-        </tbody>
-    </table>
-</div>
-              </p>
-          </div>
-          <div class="card-footer text-muted">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">검색</button>
-              </span>
-            </div>
-
-            <a ></a>
-          </div>
         </div>
 
-<form action="write" method="POST">
-    {% csrf_token %}
-    <button name="write_post" value="write" class="btn btn-primary">Write Post</button>
-</form>
-
-        <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="">&larr; Older</a>
-          </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-          </li>
-        </ul>
 
       </div>
-
-
+<!-- Sidebar Widgets Column -->
 
     </div>
+
+      <!-- Sidebar Widgets Column -->
     <!-- /.row -->
 
   </div>

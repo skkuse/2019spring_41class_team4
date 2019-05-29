@@ -1,19 +1,131 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>음식 등록</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>COMMUNITY</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/blog-post.css' %}" rel="stylesheet">
+    <link href="{% static 'post_form.css' %}" rel="stylesheet">
+
 </head>
+
 <body>
-<div class="page-header">
-    <h1>음식 등록</h1>
-</div>
-<div class="container food">
-    <form method="POST" class="post-form">
-        {% csrf_token %} {{form.as_p}}
-        <button type="submit" class="save btn-default">save</button>
-    </form>
-</div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'main' %}">For Single Life</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'main' %}">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">음식 구매</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'foodreg' %}">음식 판매</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'community' %}">커뮤니티</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+        <div class="col-lg-3">
+
+        <h1 class="my-4">Community</h1>
+
+        <div class="list-group">
+          <a href="#" class="list-group-item">Category 1</a>
+        </div>
+
+      </div>
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+          <form  method="POST" action="{% url 'food_submit' %}">{% csrf_token %}
+          <h1 class="mt-4">
+              <hr>
+      <div class="post-title">
+        <input type="text" name="title" id="post-title" class="post-input large"  placeholder="Title"/>
+      </div>
+          </h1>
+          <hr>
+
+        <!-- Post Content -->
+        <p class="lead">
+          <a>
+              <div class="post-content">
+
+      </div>
+          </a>
+        </p>
+          <p class="lead"></p>
+
+        <p><div class="post-content">
+        <textarea name="content" class="post-input content" placeholder="Content"></textarea>
+      </div></p>
+
+        <hr>
+
+          <button type="button" class="btn btn-primary">Cancel</button>
+          <button type="submit"  class="btn btn-primary">Submit</button>
+          </form>
+        <!-- Comments Form -->
+        <div class="card my-4">
+
+        </div>
+
+
+      </div>
+<!-- Sidebar Widgets Column -->
+
+    </div>
+
+      <!-- Sidebar Widgets Column -->
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
+
 </html>

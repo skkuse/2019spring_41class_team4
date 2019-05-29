@@ -1,0 +1,33 @@
+
+.page-title {
+  margin: 0.5em 0;
+  color: #555;
+}
+.post-section {
+  margin: 0 -10px;
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.post-section.editor-title {
+  margin-top: -10px;
+}
+.post-section.post-buttons {
+  border-bottom: none;
+  margin-top: 10px;
+  text-align: right;
+}
+.post-input {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-family: sans-serif;
+  margin: 0.25em 0;
+}
+.post-input.large {
+  font-size: 24px;
+  font-weight: 600;
+}
+.post-input.content{
+  height: 300px;
+}

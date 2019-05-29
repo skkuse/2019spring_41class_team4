@@ -53,23 +53,37 @@ def purchase(request):
     return render(request, 'purchase.html')
 
 def foodreg (request):
+    return render(request, 'foodform.html')
+
+def submit_food(request):
+    user = User.objects.get(username=request.user.get_username())
     if request.method == "POST":
-        # SAVE DATA
-        form = FoodForm(request.POST)
-        if form.is_valid():  # 정상적인 데이터인지를 검증
-            foods = form.save(commit=False)  # form에서 가져오고 db에 저장안함
-            foods.generate()  # db에 저장
-            return redirect('main')
-
+        fd=food.objects.create(
+            name=request.POST["title"], username=user.username, body=request.POST["content"])
+        return redirect('main')
     else:
-        form = FoodForm()
-        return render(request, 'foodform.html', {"form": form})
+        return redirect('foodreg')
 
-def view(request, board_id):
+def view_post(request, board_id):
     board = Board.objects.get(pk=board_id)
     board.view += 1
     board.save()
-    return render(request, "read_post.html")
+    context = {'board': board}
+    return render(request, "read_post.html", context)
+
+def write_post(request):
+    return render(request, "write_post.html")
+
+def submit_post(request):
+    if request.method == "POST":
+        board=Board.objects.create(
+            subject=request.POST["title"], name=request.POST["name"], content=request.POST["content"])
+        return redirect('community')
+    else:
+        return render(request, 'write_post.html')
+
+
+
 
 
 
