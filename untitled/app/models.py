@@ -4,7 +4,7 @@ from django.db import models
 class Board(models.Model):
     subject = models.CharField(max_length=50, blank=True)
     name = models.CharField(max_length=30, blank=True)
-    created_date = models.DateTimeField(auto_created=True)
+    created_date = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=500, blank=True)
     view = models.IntegerField(default=0)
 

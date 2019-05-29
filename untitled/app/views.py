@@ -65,12 +65,26 @@ def foodreg (request):
         form = FoodForm()
         return render(request, 'foodform.html', {"form": form})
 
-def view(request, board_id):
+def view_post(request, board_id):
     board = Board.objects.get(pk=board_id)
     board.view += 1
     board.save()
     context = {'board': board}
     return render(request, "read_post.html", context)
+
+def write_post(request):
+    return render(request, "write_post.html")
+
+def submit_post(request):
+    if request.method == "POST":
+        board=Board.objects.create(
+            subject=request.POST["title"], name=request.POST["name"], content=request.POST["content"])
+        return redirect('community')
+    else:
+        return render(request, 'write_post.html')
+
+
+
 
 
 
