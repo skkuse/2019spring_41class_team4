@@ -69,12 +69,13 @@
 
       <!-- Post Content Column -->
       <div class="col-lg-8">
+          <form  method="POST" action="{% url 'community_submit' %}">{% csrf_token %}
           <h1 class="mt-4">
               <hr>
-              <form  method="POST" action="{% url 'community_submit' %}">{% csrf_token %}
       <div class="post-title">
         <input type="text" name="title" id="post-title" class="post-input large"  placeholder="Title"/>
-      </div></h1>
+      </div>
+          </h1>
           <hr>
 
         <!-- Post Content -->
@@ -129,4 +130,3 @@
 </body>
 
 </html>
->
