@@ -91,7 +91,7 @@
         <tr>
 
             <td data-label="Num." width=10%>{{ board.id }}</td>
-            <td data-label="Subject" width=65%><form action="{{ board.id }}" method="POST" title="{{ board.subject}}"><a href="{{ board.id }}" value="{{ board.id }}">{{ board.subject }}</a></form></td>
+            <td data-label="Subject" width=65%><form action="post={{ board.id }}" method="POST" title="{{ board.subject}}"><a href="post={{ board.id }}" value="{{ board.id }}">{{ board.subject }}</a></form></td>
             <td data-label="Name" width=15%>{{ board.name }}</td>
             <td data-label="View" width=10%>{{ board.view }}</td>
 
