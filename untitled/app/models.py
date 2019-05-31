@@ -21,3 +21,12 @@ class food(models.Model):
 
     def __str__(self):
         return self.name
+
+class Comment(models.Model):
+    post = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='comments')
+    comment_date = models.DateTimeField(auto_now_add=True)
+    comment_contents = models.CharField(max_length=200)
+    comment_writer = models.CharField(max_length=30, blank=True)
+
+    class Meta:
+        ordering = ['-id']

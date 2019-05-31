@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .models import Board
-from .models import food
+from .models import Board, Comment, food
 from .form import FoodForm
 from django.http import HttpResponse
 # Create your views here.
@@ -87,6 +86,13 @@ def foodlist(request):
     context = {'foodlist': foodlist}
     return render(request, 'foodlist.html', context)
 
+def comment_write(request, board_id):
+    user = User.objects.get(username=request.user.get_username())
+    if request.method == 'POST':
+        post = Board.objects.get(pk=board_id)
+        content = request.POST["content"]
+        Comment.objects.create(post=post, comment_writer=user.username, comment_contents=content)
+        return redirect('community_view', board_id=board_id)
 
 
 
