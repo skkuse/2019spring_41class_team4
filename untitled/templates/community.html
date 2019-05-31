@@ -103,6 +103,29 @@
 </div>
               </p>
           </div>
+        <ul class="pagination justify-content-center mb-4">
+        {% if boards.has_previous %}
+          <li><a href="?page={{ boards.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class = "disabled"><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for i in boards.paginator.page_range %}
+
+          {% if boards.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if boards.has_next %}
+            <li><a href="?page={{ boards.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {%endif %}
+        </ul>
+
           <div class="card-footer text-muted">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search for">
@@ -110,7 +133,6 @@
                 <button class="btn btn-secondary" type="button">검색</button>
               </span>
             </div>
-
             <a ></a>
           </div>
         </div>
@@ -121,15 +143,7 @@
 </form>
 
         <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="">&larr; Older</a>
-          </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-          </li>
-        </ul>
-
+          <ul class="pagination justify-content-center mb-4"></ul>
       </div>
 
 
