@@ -9,17 +9,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>FOODLIST</title>
+  <title>PURCHASE FOOD</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/heroic-features.css' %}" rel="stylesheet">
+  <link href="{% static 'css/blog-post.css' %}" rel="stylesheet">
 
 </head>
 
 <body>
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -54,32 +55,65 @@
   <!-- Page Content -->
   <div class="container">
 
-    <!-- Jumbotron Header -->
+    <div class="row">
+        <div class="col-lg-3">
 
-  <h1 class="my-4">
-        </h1>
+        <h1 class="my-4">Purchase Food</h1>
 
-    <!-- Page Features -->
-    <div class="row text-center">
-{% for food in foodlist %}
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">{{ food.name }}</h4>
-            <p class="card-text">by {{ food.seller }}</p>
-              <p class="card-text">{{ food.price }}원</p>
-          </div>
-          <div class="card-footer">
-              <form action="food={{ food.id }}" method="POST" title="{{ food.name}}">
-                  <a href="food={{ food.id }}" value="{{ food.id }}" class="btn btn-primary" >Select</a>
-              </form>
-          </div>
+        <div class="list-group">
+          <a href="#" class="list-group-item">Category 1</a>
         </div>
+
       </div>
-        {% endfor %}
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{ food.name }}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <a>{{ food.seller }}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on {{ food.date }}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead"></p>
+
+        <p class="lead">
+          <a>{{ food.price }}원</a>
+        </p>
+        <p>{{ food.body }}</p>
+
+        <hr>
+
+        <!-- Comments Form -->
+          <form action="food={{ food.id }}/purchase" method="POST">
+                {% csrf_token %}
+              <button type="submit" value="{{ food.id }}" class="btn btn-primary">Purchase</button>
+            </form>
+<div class="card my-4">
+        </div>
+
+      </div>
+<!-- Sidebar Widgets Column -->
 
     </div>
+
+      <!-- Sidebar Widgets Column -->
     <!-- /.row -->
 
   </div>

@@ -49,7 +49,7 @@ def community(request):
 
 
 def purchase(request):
-    return render(request, 'purchase.html')
+    return render(request, 'foodlist.html')
 
 def foodreg (request):
     return render(request, 'foodform.html')
@@ -85,6 +85,11 @@ def foodlist(request):
     foodlist = food.objects.order_by('-date')
     context = {'foodlist': foodlist}
     return render(request, 'foodlist.html', context)
+
+def view_food(request, food_id):
+    fd = food.objects.get(pk=food_id)
+    context = {'food': fd}
+    return render(request, "read_food.html", context)
 
 def comment_write(request, board_id):
     user = User.objects.get(username=request.user.get_username())
