@@ -115,6 +115,10 @@ def comment_write(request, board_id):
         Comment.objects.create(post=post, comment_writer=user.username, comment_contents=content)
         return redirect('community_view', board_id=board_id)
 
+def purchase(request, food_id):
+    if request.method == 'POST':
+        fd = food.objects.get(pk=food_id)
+        return render(request, 'chatting.html', {'food': fd})
 
 
 
