@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Board, Comment, food
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .form import FoodForm
 from django.http import HttpResponse
 # Create your views here.
@@ -44,12 +45,32 @@ def logout(request):
 
 def community(request):
     boards = Board.objects.order_by('-id')
-    context = {'boards': boards}
+    page = request.GET.get('page', 1)
+    paginator = Paginator(boards, 20)
+    try:
+        lines = paginator.page(page)
+    except PageNotAnInteger:
+        lines = paginator.page(1)
+    except EmptyPage:
+        lines = paginator.page(paginator.num_pages)
+    context = {'boards': lines}
     return render(request, 'community.html', context)
 
+def foodlist(request):
+    foodlist = food.objects.order_by('-date')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(foodlist, 8)
+    try:
+        lines = paginator.page(page)
+    except PageNotAnInteger:
+        lines = paginator.page(1)
+    except EmptyPage:
+        lines = paginator.page(paginator.num_pages)
+    context = {'foodlist': lines}
+    return render(request, 'foodlist.html', context)
 
 def purchase(request):
-    return render(request, 'purchase.html')
+    return render(request, 'foodlist.html')
 
 def foodreg (request):
     return render(request, 'foodform.html')
@@ -81,10 +102,10 @@ def submit_post(request):
     else:
         return render(request, 'write_post.html')
 
-def foodlist(request):
-    foodlist = food.objects.order_by('-date')
-    context = {'foodlist': foodlist}
-    return render(request, 'foodlist.html', context)
+def view_food(request, food_id):
+    fd = food.objects.get(pk=food_id)
+    context = {'food': fd}
+    return render(request, "read_food.html", context)
 
 def comment_write(request, board_id):
     user = User.objects.get(username=request.user.get_username())
@@ -93,6 +114,13 @@ def comment_write(request, board_id):
         content = request.POST["content"]
         Comment.objects.create(post=post, comment_writer=user.username, comment_contents=content)
         return redirect('community_view', board_id=board_id)
+
+def purchase(request, food_id):
+    if request.method == 'POST':
+        fd = food.objects.get(pk=food_id)
+        return render(request, 'chatting.html', {'food': fd})
+
+
 
 
 

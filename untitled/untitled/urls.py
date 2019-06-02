@@ -35,4 +35,6 @@ urlpatterns = [
     path('foodreg/submit', views.submit_food, name='food_submit'),
     path('', views.login, name='login'),
     path('foodlist/', views.foodlist, name='foodlist'),
+    path('foodlist/food=<int:food_id>', views.view_food, name='food_view'),
+    path('foodlist/food=<int:food_id>/purchase', views.purchase, name='food_purchase'),
 ]
