@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>COMMUNITY</title>
+  <title>음식 판매</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-lg-3">
 
-        <h1 class="my-4">Community</h1>
+        <h1 class="my-4">Sell Food</h1>
 
         <div class="list-group">
           <a href="#" class="list-group-item">Category 1</a>
@@ -69,7 +69,8 @@
 
       <!-- Post Content Column -->
       <div class="col-lg-8">
-          <form  method="POST" action="{% url 'food_submit' %}">{% csrf_token %}
+          <form  method="POST" action="{% url 'food_submit' %}" enctype="multipart/form-data" novalidate>
+              {% csrf_token %}
           <h1 class="mt-4">
               <hr>
       <div class="post-title">
@@ -90,8 +91,13 @@
 
         <p><div class="post-content">
         <textarea name="content" class="post-input content" placeholder="Content"></textarea>
-      </div></p>
+      </div>
+              </p>
  <hr>
+    <div class="container" ng-controller="DemoController">
+            <input type="file" name="image" class="form-control" accept="image/*" id="avatar-upload" ng-model="upload" onchange="angular.element(this).scope().loadFile(event)">
+    </div>
+              <hr>
         <p><div class="post-price">
                   <input type="text" name="price" class="post-input price" placeholder="Price"/>
       </div></p>
@@ -130,6 +136,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'image_upload.js' %}"></script>
 
 </body>
 

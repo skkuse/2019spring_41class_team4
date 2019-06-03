@@ -69,7 +69,8 @@
 
       <!-- Post Content Column -->
       <div class="col-lg-8">
-          <form  method="POST" action="{% url 'community_submit' %}">{% csrf_token %}
+          <form  method="POST" action="{% url 'community_submit' %}" enctype="multipart/form-data" novalidate>
+              {% csrf_token %}
           <h1 class="mt-4">
               <hr>
       <div class="post-title">
@@ -94,6 +95,10 @@
       </div></p>
 
         <hr>
+            <div class="container" ng-controller="DemoController">
+            <input type="file" name="image" class="form-control" accept="image/*" id="avatar-upload" ng-model="upload" onchange="angular.element(this).scope().loadFile(event)">
+    </div>
+              <hr>
 
           <button type="button" class="btn btn-primary">Cancel</button>
           <button type="submit"  class="btn btn-primary">Submit</button>
@@ -126,7 +131,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
+    <script src="{% static 'image_upload.js' %}"></script>
 </body>
 
 </html>
