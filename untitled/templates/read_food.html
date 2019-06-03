@@ -86,7 +86,12 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+          {% if food.photo %}
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" name="image" src="{{ food.photo.url }}" alt="">
+            {% else %}
+            <img class="img-fluid rounded" name="image" src="http://placehold.it/900x300" alt="">
+      {% endif %}
 
         <hr>
 

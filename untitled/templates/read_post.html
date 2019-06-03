@@ -84,10 +84,12 @@
         <p>Posted on {{ board.created_date }}</p>
 
         <hr>
-
+        {% if board.photo %}
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
-
+        <img class="img-fluid rounded" name="image" src="{{ board.photo.url }}" alt="">
+            {% else %}
+            <img class="img-fluid rounded" name="image" src="http://placehold.it/900x300" alt="">
+      {% endif %}
         <hr>
 
         <!-- Post Content -->
