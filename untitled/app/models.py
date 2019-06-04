@@ -12,11 +12,12 @@ class Board(models.Model):
 
 class food(models.Model):
     name = models.CharField(max_length=50)
-    seller = models.CharField(max_length=30, blank=True)
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='foods')
     body = models.CharField(max_length=1024)
     photo = models.ImageField(blank=True)
     date = models.DateTimeField(auto_created=True, auto_now_add=True)
     price = models.IntegerField(default=0)
+    view = models.IntegerField(default=0)
 
     def generate(self):
         self.food =""
@@ -33,3 +34,8 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-id']
+
+class Recommend(models.Model):
+    viewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recommendation')
+    view = models.IntegerField(default=0)
+    item = models.CharField(max_length=50)
