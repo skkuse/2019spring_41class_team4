@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Board, Comment, food
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic.edit import FormView
 from .form import FoodForm
 from django.http import HttpResponse
 # Create your views here.
@@ -121,6 +122,19 @@ def purchase(request, food_id):
     if request.method == 'POST':
         fd = food.objects.get(pk=food_id)
         return render(request, 'chatting.html', {'food': fd})
+
+def search(request):
+    all_food = food.objects.all()
+    word = request.POST["word"]
+    result = []
+    for object in all_food.filter(name__contains=word):
+        result.append(object)
+    for object in all_food.filter(body__contains=word):
+        result.append(object)
+    result = list(set(result))
+    result.sort(key=lambda object : object.date)
+    result.reverse()
+    return render(request, 'foodlist.html', {'foodlist': result})
 
 
 
