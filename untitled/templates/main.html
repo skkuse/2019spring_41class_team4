@@ -17,8 +17,6 @@
   <!-- Custom styles for this template -->
   <link href="{% static 'css/shop-homepage.css' %}" rel="stylesheet">
 
-    <link href="{% static 'searchbar.css' %}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -33,17 +31,15 @@
   </symbol>
 </svg>
 
-<div class="search-bar">
-
-  <input type="text" class="input" placeholder="&nbsp;">
-  <span class="label">Search</span>
-  <span class="highlight"></span>
-  <div class="search-btn">
-       <svg class="icon icon-18">
-         <use xlink:href="#magnify"></use>
-        </svg>
-   </div>
-  </div>
+        <form action="{% url 'search_result' %}" method="POST">
+    {% csrf_token %}
+    <div class="input-group">
+              <input type="text" name="word" class="form-control" placeholder="Search for">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">검색</button>
+              </span>
+            </div>
+    </form>
 </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -242,7 +238,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'searchbar.js' %}"></script>
 
 </body>
 
