@@ -125,6 +125,9 @@ def view_food(request, food_id):
     context = {'food': fd}
     return render(request, 'read_food.html', context)
 
+def view_food1(request, food_id):
+    return redirect('food_view', food_id=food_id)
+
 def comment_write(request, board_id):
     user = User.objects.get(username=request.user.get_username())
     if request.method == 'POST':
