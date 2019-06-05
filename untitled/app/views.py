@@ -143,7 +143,7 @@ def purchase(request, food_id):
 
 def search(request):
     all_food = food.objects.all()
-    word = request.POST["word"]
+    word = request.GET.get('word', '')
     result = []
     for object in all_food.filter(name__contains=word):
         result.append(object)
@@ -152,7 +152,15 @@ def search(request):
     result = list(set(result))
     result.sort(key=lambda object : object.date)
     result.reverse()
-    return render(request, 'foodlist.html', {'foodlist': result})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(result, 6)
+    try:
+        lines = paginator.page(page)
+    except PageNotAnInteger:
+        lines = paginator.page(1)
+    except EmptyPage:
+        lines = paginator.page(paginator.num_pages)
+    return render(request, 'foodlist.html', {'foodlist': lines})
 
 
 def sim_distance(person1, person2):

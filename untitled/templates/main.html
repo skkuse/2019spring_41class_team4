@@ -31,8 +31,7 @@
   </symbol>
 </svg>
 
-        <form action="{% url 'search_result' %}" method="POST">
-    {% csrf_token %}
+        <form action="{% url 'search_result' %}" method="GET">
     <div class="input-group">
               <input type="text" name="word" class="form-control" placeholder="Search for">
               <span class="input-group-btn">
