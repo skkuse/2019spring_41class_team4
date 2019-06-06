@@ -39,8 +39,9 @@ urlpatterns = [
     path('', views.login, name='login'),
     path('foodlist/', views.foodlist, name='foodlist'),
     path('foodlist/food=<int:food_id>', views.view_food, name='food_view'),
-    path('foodlist/search/food=<int:food_id>', views.view_food, name='food_view'),
     path('foodlist/food=<int:food_id>/purchase', views.purchase, name='food_purchase'),
-    path('foodlist/search/food=<int:food_id>/purchase', views.purchase, name='food_purchase'),
-    path('foodlist/search/', views.search, name='search_result'),
+    path('foodlist/search', views.search1, name='search1'),
+    path('foodlist/search=<str:word>/', views.search_food, name='search_food'),
+    path('community/search', views.search2, name='search2'),
+    path('community/search=<str:word>/', views.search_post, name='search_post'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

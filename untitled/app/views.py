@@ -141,9 +141,13 @@ def purchase(request, food_id):
         fd = food.objects.get(pk=food_id)
         return render(request, 'chatting.html', {'food': fd})
 
-def search(request):
+def search1(request):
+    word = request.POST["word"]
+    return redirect('search_food', word=word)
+
+def search_food(request, word):
     all_food = food.objects.all()
-    word = request.GET.get('word', '')
+    word = word
     result = []
     for object in all_food.filter(name__contains=word):
         result.append(object)
@@ -153,7 +157,7 @@ def search(request):
     result.sort(key=lambda object : object.date)
     result.reverse()
     page = request.GET.get('page', 1)
-    paginator = Paginator(result, 6)
+    paginator = Paginator(result, 4)
     try:
         lines = paginator.page(page)
     except PageNotAnInteger:
@@ -162,6 +166,30 @@ def search(request):
         lines = paginator.page(paginator.num_pages)
     return render(request, 'foodlist.html', {'foodlist': lines})
 
+def search2(request):
+    word = request.POST["word"]
+    return redirect('search_post', word=word)
+
+def search_post(request, word):
+    all_post = Board.objects.all().order_by('-id')
+    word = word
+    result = []
+    for object in all_post.filter(subject__contains=word):
+        result.append(object)
+    for object in all_post.filter(content__contains=word):
+        result.append(object)
+    result = list(set(result))
+    result.sort(key=lambda object: object.id)
+    result.reverse()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(result, 6)
+    try:
+        lines = paginator.page(page)
+    except PageNotAnInteger:
+        lines = paginator.page(1)
+    except EmptyPage:
+        lines = paginator.page(paginator.num_pages)
+    return render(request, 'community.html', {'boards': lines})
 
 def sim_distance(person1, person2):
     # 공통 항목 추출

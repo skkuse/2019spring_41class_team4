@@ -92,8 +92,8 @@
 
             <td data-label="Num." width=10%>{{ board.id }}</td>
             <td data-label="Subject" width=65%>
-                <form action="post={{ board.id }}" method="POST" title="{{ board.subject}}">
-                    <a href="post={{ board.id }}" value="{{ board.id }}">{{ board.subject }}</a>
+                <form action="{% url 'community' %}post={{ board.id }}" method="POST" title="{{ board.subject}}">
+                    <a href="{% url 'community' %}post={{ board.id }}" value="{{ board.id }}">{{ board.subject }}</a>
                 </form>
             </td>
             <td data-label="Name" width=15%>{{ board.name }}</td>
@@ -131,12 +131,15 @@
         </ul>
 
           <div class="card-footer text-muted">
+              <form action="{% url 'search2' %}" method="POST">
+                  {% csrf_token %}
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for">
+              <input type="text" name="word" class="form-control" placeholder="Search for">
               <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">검색</button>
+                <button class="btn btn-secondary" type="submit">검색</button>
               </span>
             </div>
+              </form>
             <a ></a>
           </div>
         </div>
