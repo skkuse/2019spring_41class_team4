@@ -157,7 +157,7 @@ def search_food(request, word):
     result.sort(key=lambda object : object.date)
     result.reverse()
     page = request.GET.get('page', 1)
-    paginator = Paginator(result, 4)
+    paginator = Paginator(result, 8)
     try:
         lines = paginator.page(page)
     except PageNotAnInteger:
@@ -182,7 +182,7 @@ def search_post(request, word):
     result.sort(key=lambda object: object.id)
     result.reverse()
     page = request.GET.get('page', 1)
-    paginator = Paginator(result, 6)
+    paginator = Paginator(result, 20)
     try:
         lines = paginator.page(page)
     except PageNotAnInteger:
