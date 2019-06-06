@@ -86,7 +86,7 @@ def submit_food(request):
     if request.method == "POST":
         food.objects.create(
             name=request.POST["title"], seller=user, body=request.POST["content"],
-            price=request.POST["price"], photo=request.FILES["image"])
+            price=request.POST["price"], photo=request.POST["image"])
         return redirect('main')
     else:
         return redirect('foodreg')
@@ -105,7 +105,7 @@ def submit_post(request):
     if request.method == "POST":
         board=Board.objects.create(
             subject=request.POST["title"], name=request.POST["name"], content=request.POST["content"],
-        photo=request.FILES["image"])
+        photo=request.POST["image"])
         return redirect('community')
     else:
         return render(request, 'write_post.html')
