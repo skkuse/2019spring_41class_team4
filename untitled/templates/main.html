@@ -16,6 +16,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/shop-homepage.css' %}" rel="stylesheet">
+    <link href="{% static 'map.css' %}" rel="stylesheet">
 
 </head>
 
@@ -77,9 +78,28 @@
 
         <h1 class="my-4">MAIN</h1>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA4sdTrdzF1qpaFwz2rdWe3BHHnF9hCUg&libraries=places" type="text/javascript"></script>
         <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
+          <a data-toggle="modal" href='#openGoogleMap' onclick="showLocationChoser()" class="list-group-item">Google Map</a>
+            <div class="modal fade" id="openGoogleMap">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Google Map Address Selector</h4>
+						</div>
+						<div class="modal-body">
+							<input type="text" name="" id="searchTextField" class="form-control" value="" placeholder="Please enter your loaction" required="required" title="" autocomplete="off">
+							<div id="mapCanvas"></div>
+							<p class="text-center" id="locationNotAvaliable" style="display: none;"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" onclick="sendLatLng()">Select</button>
+						</div>
+					</div>
+				</div>
+			</div>
           <a href="#" class="list-group-item">Category 2</a>
           <a href="#" class="list-group-item">Category 3</a>
         </div>
@@ -182,6 +202,7 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'map.js' %}"></script>
 
 </body>
 
