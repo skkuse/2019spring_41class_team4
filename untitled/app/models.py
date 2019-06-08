@@ -18,6 +18,9 @@ class food(models.Model):
     date = models.DateTimeField(auto_created=True, auto_now_add=True)
     price = models.IntegerField(default=0)
     view = models.IntegerField(default=0)
+    category = models.CharField(max_length=20, default=0)
+    lat = models.FloatField(null=True, blank=True)
+    lng = models.FloatField(null=True, blank=True)
 
     def generate(self):
         self.food =""

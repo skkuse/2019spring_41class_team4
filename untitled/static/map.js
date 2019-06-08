@@ -123,4 +123,6 @@ function sendLatLng() {
       $("#locationNotAvaliable").show();
       $('#locationNotAvaliable').html(lat + '  ' + lng);
       console.log(lat + '  ' + lng);
+      var data = {'lat':lat, 'lng':lng};
+      $.get(URL, data)
 };
