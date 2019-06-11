@@ -21,6 +21,8 @@ def signup(request):
         if request.POST["password1"] == request.POST["password2"]:
             user = User.objects.create_user(
                 username=request.POST["username"], password=request.POST["password1"])
+            location = Location(user=user)
+            location.save()
             auth.login(request, user)
             return redirect('main')
         else:
@@ -218,8 +220,9 @@ def get_latlng(request):
     if request.method == 'GET':
         lat = request.GET.get('lat')
         lng = request.GET.get('lng')
-        location = Location(user=user, lat=lat, lng=lng)
-        location.save()
+        user.location.lat = lat
+        user.location.lng = lng
+        user.location.save()
     return redirect('main')
 
 def sim_distance(person1, person2):
