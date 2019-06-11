@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .models import Board, Comment, food, Recommend
+from .models import Board, Comment, food, Recommend, Location
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from math import sqrt, sin, cos, atan2, radians
 # Create your views here.
-
-lat = 0
-lng = 0
 
 def main(request):
     user = User.objects.get(username=request.user.get_username())
@@ -23,7 +20,7 @@ def signup(request):
     if request.method == "POST":
         if request.POST["password1"] == request.POST["password2"]:
             user = User.objects.create_user(
-                username=request.POST["username"],password=request.POST["password1"])
+                username=request.POST["username"], password=request.POST["password1"])
             auth.login(request, user)
             return redirect('main')
         else:
@@ -65,12 +62,12 @@ def community(request):
     return render(request, 'community.html', context)
 
 def foodlist(request):
-    global lat, lng
+    user = User.objects.get(username=request.user.get_username())
     R = 6373.0
     foodlist = food.objects.order_by('-date')
     near_foodlist = []
-    lat_from_purchaser = radians(float(lat))
-    lng_from_purchaser = radians(float(lng))
+    lat_from_purchaser = radians(float(user.location.lat))
+    lng_from_purchaser = radians(float(user.location.lng))
     for object in foodlist:
         lat_from_seller = radians(float(object.lat))
         lng_from_seller = radians(float(object.lng))
@@ -99,7 +96,6 @@ def foodreg (request):
     return render(request, 'foodform.html')
 
 def submit_food(request):
-    global lat, lng
     user = User.objects.get(username=request.user.get_username())
     if request.method == "POST":
         if 'image' in request.FILES:
@@ -108,7 +104,7 @@ def submit_food(request):
             photo = request.POST["image"]
         food.objects.create(
             name=request.POST["title"], seller=user, body=request.POST["content"],
-            price=request.POST["price"], photo=photo, lat=float(lat), lng=float(lng))
+            price=request.POST["price"], photo=photo, lat=user.location.lat, lng=user.location.lng)
         return redirect('main')
     else:
         return redirect('foodreg')
@@ -218,11 +214,13 @@ def search_post(request, word):
     return render(request, 'community.html', {'boards': lines})
 
 def get_latlng(request):
-    global lat, lng
+    user = User.objects.get(username=request.user.get_username())
     if request.method == 'GET':
         lat = request.GET.get('lat')
         lng = request.GET.get('lng')
-        return redirect('main')
+        location = Location(user=user, lat=lat, lng=lng)
+        location.save()
+    return redirect('main')
 
 def sim_distance(person1, person2):
     # 공통 항목 추출

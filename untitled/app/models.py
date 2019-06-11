@@ -42,3 +42,8 @@ class Recommend(models.Model):
     viewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recommendation')
     view = models.IntegerField(default=0)
     item = models.CharField(max_length=50)
+
+class Location(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    lat = models.FloatField(null=True, blank=True)
+    lng = models.FloatField(null=True, blank=True)
