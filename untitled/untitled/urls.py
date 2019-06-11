@@ -44,4 +44,5 @@ urlpatterns = [
     path('foodlist/search=<str:word>/', views.search_food, name='search_food'),
     path('community/search', views.search2, name='search2'),
     path('community/search=<str:word>/', views.search_post, name='search_post'),
+    path('main/get_location/', views.get_latlng, name='get_latlng'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
