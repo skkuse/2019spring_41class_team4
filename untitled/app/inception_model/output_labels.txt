@@ -1,0 +1,4 @@
+cooked
+fish
+meat
+vegetable
