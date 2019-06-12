@@ -281,15 +281,15 @@ def sim_distance(person1, person2):
     for item in person1.recommendation.item.all:
         if person2.recommendation.objects.filter(item=item.item).exists():
             si[item.item] = 1
-    # 공통 평가 항목이 없는 경우 0 리턴
+    # 공통 조회 항목이 없는 경우 0 리턴
     if len(si) == 0: return 0
-    # person1의 item이 person2에서도 존재한다면, person1과 person2의 item 평점 차이의 제곱한 값을 더한 후 제곱 근을 계산
+    # person1의 item이 person2에서도 존재한다면, person1과 person2의 item 조회수 차이의 제곱한 값을 더한 후 제곱 근을 계산
     sum_of_squares = sum([(person1.recommendation.objects.get(item=item.item).view - person2.recommendation.objects.get(item=item.item).view)**2
                           for item in person1.recommendation.all if person2.recommendation.objects.filter(item=item.item).exists()])
     return 1/(1+sqrt(sum_of_squares))
 
 def sim_pearson(p1, p2):
-    # 같이 평가한 항목들의 목록을 구함
+    # 같이 조회한 항목들의 목록을 구함
     si = dict()
     for item in Recommend.objects.filter(viewer=p1):
         if Recommend.objects.filter(item=item.item, viewer=p2).exists():
@@ -298,7 +298,7 @@ def sim_pearson(p1, p2):
     n = len(si)
     # 공통 항목이 없으면 0 리턴
     if n==0: return 0
-    # 모든 선호도를 합산
+    # 모든 조회수를 합산
     sum1 = sum([Recommend.objects.get(viewer=p1, item=it).view for it in si])
     sum2 = sum([Recommend.objects.get(viewer=p2, item=it).view for it in si])
     # 제곱의 합을 계산
@@ -334,7 +334,7 @@ def get_recommendations(person, similarity=sim_pearson):
             if Recommend.objects.filter(viewer=person, item=item.item).exists()==False:
                 # 유사도 * 점수
                 totals.setdefault(item.item, 0)
-                totals[item.item] += Recommend.objects.get(viewer=other, item=item.item).view*sim  # other가 평가한 영화의 점수 * person과 other의 상관계수
+                totals[item.item] += Recommend.objects.get(viewer=other, item=item.item).view*sim  # other가 본 음식의 조회수 * person과 other의 상관계수
                 # 유사도 합계
                 simSums.setdefault(item.item, 0)
                 simSums[item.item] += sim
