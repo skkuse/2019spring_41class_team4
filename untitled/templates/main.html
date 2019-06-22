@@ -17,6 +17,7 @@
   <!-- Custom styles for this template -->
   <link href="{% static 'css/shop-homepage.css' %}" rel="stylesheet">
     <link href="{% static 'map.css' %}" rel="stylesheet">
+    <link href="{% static 'notice.css' %}" rel="stylesheet">
 
 </head>
 <body style="background-image: url({% static 'vendor/mealbg.jpg' %});background-size:100% 100%;">
@@ -31,6 +32,36 @@
     <path d="M12.5 11h-.8l-.3-.3c1-1.1 1.6-2.6 1.6-4.2C13 2.9 10.1 0          6.5 0S0 2.9 0 6.5 2.9 13 6.5 13c1.6 0 3.1-.6 4.2-1.6l.3.3v.8l5 5          1.5-1.5-5-5zm-6 0C4 11 2 9 2 6.5S4 2 6.5 2 11 4 11 6.5 9 11 6.5            11z" fill="#fff" fill-rule="evenodd"/>
   </symbol>
 </svg>
+        <div >
+      <div class="wrapper" >
+      <div class="nav-bar">
+         <ul>
+            <li>
+               <div class="dropdowns-wrapper">
+                  <div class="dropdown-container">
+                     <div class="notifications dropdown dd-trigger" id="bellClick">
+                        <span class="count animated" id="notifications-count">0</span>
+                        <span class="fa fa-bell-o"></span>
+                     </div>
+                     <div class="dropdown-menu animated fadeInDown" id="notification-dropdown" style="display: block;">
+                        <div class="dropdown-header">
+                           <span class="triangle"></span>
+                           <span class="heading">Notifications</span>
+                           <span class="count ng-binding" id="dd-notifications-count">0</span>
+                        </div>
+                        <div class="dropdown-body">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </li>
+             </ul>
+                     </div>
+         </div>
+         </div>
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script src="js/index.js"></script>
+              <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
 
         <form action="{% url 'search1' %}" method="POST">
             {% csrf_token %}
@@ -198,12 +229,18 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
     </div>
     <!-- /.container -->
   </footer>
-
+<script>
+    var data1 = [];
+    {% for notice in user.notification.all %}
+        data1.unshift({"name":"{{ notice.purchaser }}","status" :"buy "+"{{ notice.foodname }}"});
+    {% endfor %}
+    {{ user.notification.all.delete }}
+</script>
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'map.js' %}"></script>
-
+<script src="{% static 'notice.js' %}"></script>
 </body>
 
 </html>
