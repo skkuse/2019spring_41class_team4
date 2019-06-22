@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .models import Board, Comment, food, Recommend, Location
+from .models import Board, Comment, food, Recommend, Location, Notification
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from math import sqrt, sin, cos, atan2, radians
 # Create your views here.
@@ -14,7 +14,7 @@ def main(request):
         for object in food.objects.all().filter(name=item):
             result.append(object)
     result.reverse()
-    return render(request, 'main.html', {'ranks': result})
+    return render(request, 'main.html', {'ranks': result, 'user': user})
 
 def signup(request):
     if request.method == "POST":
@@ -161,8 +161,10 @@ def comment_write(request, board_id):
         return redirect('community_view', board_id=board_id)
 
 def purchase(request, food_id):
+    user = User.objects.get(username=request.user.get_username())
     if request.method == 'POST':
         fd = food.objects.get(pk=food_id)
+        Notification.objects.create(seller=fd.seller, purchaser=user.username)
         return render(request, 'chatting.html', {'food': fd})
 
 def search1(request):

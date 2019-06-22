@@ -47,3 +47,8 @@ class Location(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     lat = models.FloatField(null=True, blank=True)
     lng = models.FloatField(null=True, blank=True)
+
+class Notification(models.Model):
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notification')
+    purchase_date = models.DateTimeField(auto_now_add=True)
+    purchaser = models.CharField(max_length=30, blank=True)
