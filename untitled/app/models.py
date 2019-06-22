@@ -52,3 +52,4 @@ class Notification(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notification')
     purchase_date = models.DateTimeField(auto_now_add=True)
     purchaser = models.CharField(max_length=30, blank=True)
+    foodname = models.CharField(max_length=50, blank=True)

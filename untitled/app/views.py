@@ -164,7 +164,7 @@ def purchase(request, food_id):
     user = User.objects.get(username=request.user.get_username())
     if request.method == 'POST':
         fd = food.objects.get(pk=food_id)
-        Notification.objects.create(seller=fd.seller, purchaser=user.username)
+        Notification.objects.create(seller=fd.seller, purchaser=user.username, foodname=fd.name)
         return render(request, 'chatting.html', {'food': fd})
 
 def search1(request):

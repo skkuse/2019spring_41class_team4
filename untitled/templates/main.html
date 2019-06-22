@@ -231,9 +231,9 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
   </footer>
 <script>
     var data1 = [];
-    for(var i = 0; i < {{ user.notification.all.count }}; i++){
-        data1.push({"name":"{{ user.notification.purchaser }}","status" :"buy"});
-    }
+    {% for notice in user.notification.all %}
+        data1.unshift({"name":"{{ notice.purchaser }}","status" :"buy "+"{{ notice.foodname }}"});
+    {% endfor %}
     {{ user.notification.all.delete }}
 </script>
   <!-- Bootstrap core JavaScript -->
