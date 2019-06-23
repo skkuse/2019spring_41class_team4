@@ -221,6 +221,42 @@ def search1(request):
     word = request.POST["word"]
     return redirect('search_food', word=word)
 
+def cooked(request):
+    word = 'cooked'
+    return redirect('category', word=word)
+
+def vegetable(request):
+    word = 'vegetable'
+    return redirect('category', word=word)
+
+def meat(request):
+    word = 'meat'
+    return redirect('category', word=word)
+
+def fish(request):
+    word = 'fish'
+    return redirect('category', word=word)
+
+def category(request, word):
+    all_food = food.objects.all()
+    word = word
+    result = []
+    for object in all_food.filter(category__contains=word):
+        result.append(object)
+
+    result = list(set(result))
+    result.sort(key=lambda object : object.date)
+    result.reverse()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(result, 8)
+    try:
+        lines = paginator.page(page)
+    except PageNotAnInteger:
+        lines = paginator.page(1)
+    except EmptyPage:
+        lines = paginator.page(paginator.num_pages)
+    return render(request, 'foodlist.html', {'foodlist': lines})
+
 def search_food(request, word):
     all_food = food.objects.all()
     word = word
