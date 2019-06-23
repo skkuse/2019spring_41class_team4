@@ -131,6 +131,7 @@
 					</div>
 				</div>
 			</div>
+            <a href="{% url 'my_food' %}" class="list-group-item">My Food</a>
         </div>
 <script>
     var URL = "{% url 'get_latlng' %}";
@@ -232,7 +233,7 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 <script>
     var data1 = [];
     {% for notice in user.notification.all %}
-        data1.unshift({"name":"{{ notice.purchaser }}","status" :"buy "+"{{ notice.foodname }}"});
+        data1.unshift({"name":"{{ notice.foodname }}","status" :"is bought by "+"{{ notice.purchaser }}"});
     {% endfor %}
     {{ user.notification.all.delete }}
 </script>

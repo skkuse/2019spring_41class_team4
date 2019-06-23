@@ -217,6 +217,26 @@ def search_post(request, word):
         lines = paginator.page(paginator.num_pages)
     return render(request, 'community.html', {'boards': lines})
 
+def myfood(request):
+    user = User.objects.get(username=request.user.get_username())
+    foodlist = food.objects.order_by('-date').filter(seller=user)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(foodlist, 8)
+    try:
+        lines = paginator.page(page)
+    except PageNotAnInteger:
+        lines = paginator.page(1)
+    except EmptyPage:
+        lines = paginator.page(paginator.num_pages)
+    context = {'foodlist': lines}
+    return render(request, 'myfoodlist.html', context)
+
+def myfood_chat(request, food_id):
+    user = User.objects.get(username=request.user.get_username())
+    if request.method == 'POST':
+        fd = food.objects.get(pk=food_id)
+        return render(request, 'chatting.html', {'food': fd})
+
 def get_latlng(request):
     user = User.objects.get(username=request.user.get_username())
     if request.method == 'GET':
