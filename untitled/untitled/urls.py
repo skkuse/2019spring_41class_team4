@@ -45,4 +45,9 @@ urlpatterns = [
     path('community/search', views.search2, name='search2'),
     path('community/search=<str:word>/', views.search_post, name='search_post'),
     path('main/get_location/', views.get_latlng, name='get_latlng'),
+    path('foodlist/cooked',views.cooked,name='cooked'),
+    path('foodlist/meat', views.meat, name='meat'),
+    path('foodlist/vegetable', views.vegetable, name='vegetable'),
+    path('foodlist/cooked', views.fish, name='fish'),
+    path('foodlist/category=<str:word>/', views.category, name='category'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
