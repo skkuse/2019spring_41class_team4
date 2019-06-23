@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>MY FOODLIST</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/heroic-features.css' %}" rel="stylesheet">
+
+</head>
+<body style="background-image: url({% static 'vendor/mealbg.jpg' %});background-size:100% 100%;">
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'main' %}">For Single Life</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'main' %}">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'foodlist' %}">음식 구매</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'foodreg' %}">음식 판매</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'community' %}">커뮤니티</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+
+  <h1 class="my-4">
+        </h1>
+
+    <!-- Page Features -->
+    <div class="row text-center">
+{% for food in foodlist %}
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+            {% if food.photo %}
+        <img class="img-fluid rounded" name="image" src="{{ food.photo.url }}" alt="">
+            {% else %}
+            <img class="img-fluid rounded" name="image" src="http://placehold.it/500x325" alt="">
+      {% endif %}
+          <div class="card-body">
+            <h4 class="card-title">{{ food.name }}</h4>
+            <p class="card-text">by {{ food.seller.username}}</p>
+              <p class="card-text">{{ food.price }}원</p>
+          </div>
+          <div class="card-footer">
+              <form action="food={{ food.id }}/chat" method="POST">
+                {% csrf_token %}
+              <button type="submit" value="{{ food.id }}" class="btn btn-primary">Go To Chat</button>
+            </form>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+
+    </div>
+    <!-- /.row -->
+<ul class="pagination justify-content-center mb-4">
+        {% if foodlist.has_previous %}
+          <li><a href="?page={{ foodlist.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class = "disabled"><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for i in foodlist.paginator.page_range %}
+
+          {% if foodlist.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if foodlist.has_next %}
+            <li><a href="?page={{ foodlist.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {%endif %}
+        </ul>
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>
