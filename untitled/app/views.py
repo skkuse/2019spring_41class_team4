@@ -212,10 +212,10 @@ def comment_write(request, board_id):
 
 def purchase(request, food_id):
     user = User.objects.get(username=request.user.get_username())
-    if request.method == 'POST':
-        fd = food.objects.get(pk=food_id)
+    fd = food.objects.get(pk=food_id)
+    if user != fd.seller:
         Notification.objects.create(seller=fd.seller, purchaser=user.username, foodname=fd.name)
-        return render(request, 'chatting.html', {'food': fd})
+    return render(request, 'chatting.html', {'food': fd})
 
 def search1(request):
     word = request.POST["word"]
@@ -316,12 +316,6 @@ def myfood(request):
         lines = paginator.page(paginator.num_pages)
     context = {'foodlist': lines}
     return render(request, 'myfoodlist.html', context)
-
-def myfood_chat(request, food_id):
-    user = User.objects.get(username=request.user.get_username())
-    if request.method == 'POST':
-        fd = food.objects.get(pk=food_id)
-        return render(request, 'chatting.html', {'food': fd})
 
 def get_latlng(request):
     user = User.objects.get(username=request.user.get_username())

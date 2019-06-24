@@ -46,7 +46,6 @@ urlpatterns = [
     path('community/search=<str:word>/', views.search_post, name='search_post'),
     path('main/get_location/', views.get_latlng, name='get_latlng'),
     path('myfoodlist/', views.myfood, name='my_food'),
-    path('myfoodlist/food=<int:food_id>/chat', views.myfood_chat, name='my_food_chat'),
     path('foodlist/cooked',views.cooked,name='cooked'),
     path('foodlist/meat', views.meat, name='meat'),
     path('foodlist/vegetable', views.vegetable, name='vegetable'),
