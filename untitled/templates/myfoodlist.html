@@ -75,10 +75,9 @@
               <p class="card-text">{{ food.price }}원</p>
           </div>
           <div class="card-footer">
-              <form action="food={{ food.id }}/chat" method="POST">
-                {% csrf_token %}
-              <button type="submit" value="{{ food.id }}" class="btn btn-primary">Go To Chat</button>
-            </form>
+              <form action="{% url 'foodlist' %}food={{ food.id }}/purchase" method="POST" title="{{ food.name}}">
+                  <a href="{% url 'foodlist' %}food={{ food.id }}/purchase" value="{{ food.id }}" class="btn btn-primary" >Go To Chat</a>
+              </form>
           </div>
         </div>
       </div>
